@@ -1,0 +1,52 @@
+version: '3.5'
+
+services: 
+  database:
+    image: postgres:alpine
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: admin
+      POSTGRES_USER: admin
+    networks:
+      - my_network
+    expose:
+      - 5432
+
+  migrations:
+    env_file:
+      - ./dev/db/.env
+    build:
+      dockerfile: ./dev/db/migrator.dockerfile
+
+  adminer:
+    image: adminer:latest
+    restart: always
+    depends_on:
+      - database
+    ports:
+      - 8000:8000
+    networks:
+      - my_network
+    expose:
+      - 8000
+
+  app:
+    build:
+      context: .
+      dockerfile: ./dev.dockerfile
+    restart: always
+    depends_on: 
+      - database
+    ports:
+      - 8080:8080
+    volumes:
+    - ./src:/usr/local/app/src
+    networks:
+      - my_network
+    expose:
+      - 8080
+    command: ['yarn', 'watch']
+
+networks:
+  my_network:
+    name: my_network
