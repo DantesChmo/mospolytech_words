@@ -10,4 +10,4 @@ watch-client:
 
 .PHONY: watch-server
 watch-server:
-	./node_modules/.bin/nodemon ./src/app/index.ts
+	./node_modules/.bin/nodemon ./src/index.ts

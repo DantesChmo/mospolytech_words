@@ -3,15 +3,16 @@ import {Title} from '../Title';
 
 interface Props {
   className: string;
-  text: string
+  text: string;
+  onClick: string
 }
 
 class Button extends UComponent<Props> {
   render(u) {
-    const {className, text} = this.props;
+    const {className, text, onClick} = this.props;
 
     return (
-      u('button', {className},
+      u('button', {className, onclick: onClick},
         u(Title, {className: 'Button__text', content: text})
       )
     );

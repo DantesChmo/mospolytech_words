@@ -6,7 +6,7 @@ module.exports = {
   mode: 'development',
   entry: './src/static/common/common_client.ts',
   output: {
-    path: path.resolve(__dirname, 'out'),
+    path: path.resolve(__dirname, 'out/static/generated'),
   },
   plugins: [
     // Add your plugins here

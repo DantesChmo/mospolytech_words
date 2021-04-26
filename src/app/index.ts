@@ -1,9 +1,18 @@
 import express from 'express';
+import path from 'path'
 import {router} from '../router';
 
-const app = express()
-  .use(router.getExpressRouter());
+const staticPath = path.resolve(__dirname, '../../out/static/generated');
 
-app.listen('8080', () => {
-  console.log('Server started');
-});
+const app = express();
+
+if (process.env.NODE_ENV !== 'production') {
+  app.use(express.static(staticPath));
+}
+
+app.use(router.getExpressRouter());
+
+
+export {
+  app
+};

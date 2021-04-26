@@ -16,7 +16,7 @@
   "scripts": {
     "bootstrap": "make bootstrap",
     "clean": "make clean",
-    "build": "docker build .",
+    "build": "make build",
     "watch": "make watch"
   },
   "keywords": [],

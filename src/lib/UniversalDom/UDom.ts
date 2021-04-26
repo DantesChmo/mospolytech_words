@@ -23,8 +23,13 @@ class UDom {
     }
 
     this._dom = dom;
-    UDom._idCache = new Set();
-    UDom._keyToIdMap = {};
+    if (!UDom._idCache) {
+      UDom._idCache = new Set();
+    }
+
+    if (!UDom._keyToIdMap) {
+      UDom._keyToIdMap = {};
+    }
     UDom._instance = this;
   }
 
@@ -106,6 +111,8 @@ class UDom {
 
   private _createConfig(): string {
     const config = JSON.stringify(UDom._keyToIdMap);
+    console.log(UDom._keyToIdMap);
+    console.log(config);
     return config !== '{}' ? `<script>window.Uconfig = ${config}</script>` : '';
   }
 
@@ -130,7 +137,7 @@ class UDom {
       <body>
         ${body}
         ${config}
-        ${(Array.isArray(scripts) ? scripts : [scripts]).map((scriptLink) => `<script src="${scriptLink}">`)}
+        ${(Array.isArray(scripts) ? scripts : [scripts]).map((scriptLink) => `<script src="${scriptLink}"></script>`)}
       </body>
       </html>
     `;
