@@ -14,10 +14,15 @@
     "ext": ".ts"
   },
   "scripts": {
+    "up": "docker-compose -f ./dev/docker-compose.yml up -d --no-recreate --remove-orphans && npm run logs:dev",
+    "down": "docker-compose -f ./dev/docker-compose.yml down --rmi local",
     "bootstrap": "make bootstrap",
     "clean": "make clean",
     "build": "make build",
-    "watch": "make watch"
+    "watch": "make watch",
+    "logs:dev": "docker-compose -f ./dev/docker-compose.yml logs -f",
+    "logs:staging": "heroku logs --tail -a mospolytech-words-staging",
+    "logs:production": "heroku logs --tail -a mospolytech-words"
   },
   "keywords": [],
   "author": "",

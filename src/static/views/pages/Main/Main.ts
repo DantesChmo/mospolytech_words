@@ -11,7 +11,7 @@ class MainPage extends UComponent<{hello: string}> {
           onClick: 'MainPage.onButtonClick()'
         }),
         u('span', {key: 'hello'}),
-        'SOME TEXT'
+        'SOME more Text'
       )
     );
   }

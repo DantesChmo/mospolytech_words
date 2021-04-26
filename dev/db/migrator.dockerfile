@@ -1,7 +1,5 @@
-FROM alpine:latest
+FROM python:alpine3.12
 
-RUN apk update
-RUN apk add python3
-RUN apk add pip3
+RUN pip install yandex-pgmigrate
 
-RUN pip3 install yandex-pgmigrate
+CMD ['pgmigrate']

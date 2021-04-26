@@ -1,5 +1,5 @@
-# See bin folder
-include bin/bootstrap.mk
-include bin/build.mk
-include bin/clean.mk
-include bin/watch.mk
+# See dev/bin folder
+include ./dev/bin/bootstrap.mk
+include ./dev/bin/build.mk
+include ./dev/bin/clean.mk
+include ./dev/bin/watch.mk
