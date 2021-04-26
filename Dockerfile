@@ -31,6 +31,4 @@ COPY --from=build /tmp/package-lock.json .
 RUN npm ci
 RUN npm prune --production
 
-EXPOSE 8080
-
 ENTRYPOINT ["node","out/index.js"]
