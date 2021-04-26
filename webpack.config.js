@@ -9,6 +9,15 @@ module.exports = {
     path: path.resolve(__dirname, 'out/static/generated'),
   },
   plugins: [
+    {
+      apply: (compiler) => {
+        compiler.hooks.done.tap('DonePlugin', (stats) => {
+          setTimeout(() => {
+            process.exit(0)
+          })
+        });
+      }
+    }
     // Add your plugins here
     // Learn more obout plugins from https://webpack.js.org/configuration/plugins/
   ],

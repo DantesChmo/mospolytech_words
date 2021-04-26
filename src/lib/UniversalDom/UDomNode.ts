@@ -35,9 +35,7 @@ class UDomNode implements IUDom {
     this.id = this.attributes['id'] as string;
 
     if (key) {
-      console.log('IM HERE');
       UDomNode._keyToIdMap[key] = this.id;
-      console.log(UDomNode._keyToIdMap);
     }
   }
 

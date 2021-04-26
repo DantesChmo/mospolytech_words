@@ -15,12 +15,7 @@ class UDom {
 
   private static _keyToIdMap: Record<string | number, string>;
 
-  private static _instance: UDom;
-
   constructor(dom: IUDom) {
-    if (UDom._instance) {
-      return UDom._instance;
-    }
 
     this._dom = dom;
     if (!UDom._idCache) {
@@ -30,7 +25,6 @@ class UDom {
     if (!UDom._keyToIdMap) {
       UDom._keyToIdMap = {};
     }
-    UDom._instance = this;
   }
 
   private static _createStringElement(tagName: string, attributes: UComponentAttributes): [string, string] {
@@ -111,8 +105,6 @@ class UDom {
 
   private _createConfig(): string {
     const config = JSON.stringify(UDom._keyToIdMap);
-    console.log(UDom._keyToIdMap);
-    console.log(config);
     return config !== '{}' ? `<script>window.Uconfig = ${config}</script>` : '';
   }
 
