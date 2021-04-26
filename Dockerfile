@@ -17,12 +17,9 @@ RUN yarn build
 RUN npm install -g synp
 RUN synp --source-file yarn.lock
 
-FROM alpine
+FROM node:latest
 
 WORKDIR /usr/local/app
-
-RUN apk add nodejs
-RUN apk add npm
 
 COPY --from=build /tmp/out ./out
 COPY --from=build /tmp/package.json .
@@ -30,5 +27,7 @@ COPY --from=build /tmp/package-lock.json .
 
 RUN npm ci
 RUN npm prune --production
+
+EXPOSE 8080
 
 ENTRYPOINT ["node","out/index.js"]
