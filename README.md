@@ -1,15 +1,14 @@
-# 🚀 Welcome to your new awesome project!
+# Mospolytech words project
 
-This project has been created using **webpack-cli**, you can now run
+For start this project you need to install docker (docker-compose) yarn (optionally)
 
 ```
-npm run build
+npm run up
 ```
 
 or
 
 ```
-yarn build
+yarn up
 ```
 
-to bundle your application
