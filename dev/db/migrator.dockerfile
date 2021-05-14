@@ -1,5 +1,12 @@
-FROM python:alpine3.12
+FROM python:3
 
-RUN pip install yandex-pgmigrate
+RUN apt-get update
+RUN apt-get install -y postgresql
 
-CMD ['pgmigrate']
+RUN pip3 install yandex-pgmigrate
+
+WORKDIR /usr/local/app
+COPY ./dev ./dev
+COPY ./Makefile ./
+
+RUN chmod +x ./dev/db/wait-for.sh

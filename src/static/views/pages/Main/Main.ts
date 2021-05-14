@@ -1,10 +1,12 @@
-import {UComponent} from '../../../../lib/UniversalDom';
-import {Button} from '../../base/Button';
+import { UComponent } from '../../../../lib/UniversalDom';
+import { Header } from '../../base/Header';
+import { Button } from '../../base/Button';
 
-class MainPage extends UComponent<{hello: string}> {
+class MainPage extends UComponent<{}> {
   render(u) {
     return (
       u('div', {className: 'MainPage'},
+        u(Header),
         u(Button, {
           className: 'MainPage-Button',
           text: 'button text',

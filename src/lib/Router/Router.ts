@@ -1,28 +1,46 @@
-import {Request, Response, NextFunction, Router as ExpressRouter} from 'express';
+import {
+  Request,
+  Response,
+  NextFunction,
+  Router as ExpressRouter
+} from 'express';
+import { HandlerType } from '../Handler';
 
-type Handler = (req: Request, res?: Response, next?: NextFunction) => void;
+type HandlerMethod = (req: Request, res?: Response, next?: NextFunction) => Promise<void> | void;
 
 type HTTPMethod = 'GET' | 'POST' | 'PUT';
+
+interface RouteParams {
+  path: string;
+  handler: HandlerType;
+  method?: HTTPMethod;
+  middlewares?: HandlerMethod[] | HandlerMethod;
+  callback?: string | 'index'; // TODO
+}
 
 class Route {
   public path: string;
 
-  public handler: Handler;
+  public handler: HandlerMethod;
 
   public method: HTTPMethod;
 
-  constructor(path: string, handler: Handler, method: HTTPMethod) {
+  public middlewares: RouteParams['middlewares'];
+
+  constructor({ path, handler, middlewares, method = 'GET', callback = 'index' }: RouteParams) {
     this.path = path;
-    this.handler = handler;
+    const handlerInstance = new handler();
+    this.handler = handlerInstance[callback];
     this.method = method;
+    this.middlewares = middlewares;
   }
 }
 
 class Router {
   private _routesStorage: Route[] = [];
 
-  public add(path: string, handler: Handler, method: HTTPMethod = 'GET'): this {
-    const route = new Route(path, handler, method);
+  public add(params: RouteParams): this {
+    const route = new Route(params);
     this._routesStorage.push(route);
 
     return this;
@@ -30,8 +48,11 @@ class Router {
 
   public getExpressRouter(): ExpressRouter {
     const router = ExpressRouter();
-    this._routesStorage
-      .forEach(({path, handler, method}) => (router as any)[method.toLowerCase()](path, handler));
+    this._routesStorage.forEach(({path, handler, method, middlewares}) => {
+      const routerMiddlewares = middlewares ? !Array.isArray(middlewares) ? [middlewares] : middlewares : [];
+
+      (router as any)[method.toLowerCase()](path, [...routerMiddlewares, handler]);
+    });
 
     return router;
   }

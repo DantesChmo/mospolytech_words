@@ -27,18 +27,20 @@ class UDom {
     }
   }
 
-  private static _createStringElement(tagName: string, attributes: UComponentAttributes): [string, string] {
+  private _createStringElement(tagName: string, attributes: UComponentAttributes): [string, string] {
     const attributesString = attributes ? Object.entries(attributes).reduce((result, [key, value]) => {
       result.push(`${key === 'className' ? 'class' : key}="${value}"`);
       return result;
     }, []).join(' ') : '';
 
     const innerPlaceholder = '{{inner}}'
+    const result = [`<${tagName} ${attributesString}>${innerPlaceholder}</${tagName}>`, innerPlaceholder];
 
-    return [`<${tagName} ${attributesString}>${innerPlaceholder}</${tagName}>`, innerPlaceholder];
+    return result as [string, string];
   }
 
   public createApp(settings?: UAppSettings): string {
+    console.log(JSON.stringify(this._dom, null, 2));
     const appContent = this.toHtmlString(this._dom);
     const config = this._createConfig();
 
@@ -54,7 +56,7 @@ class UDom {
   public static uCreateElement<T extends CommonProps = null>(
     component: any, // UComponentType<T> | 'string'
     props: T = null,
-    ...inner: (InnerType<IUDom>)[]
+    ...inner: InnerType[]
   ): IUDom {
     let key: IUDom['key'];
     if (props) {
@@ -72,30 +74,34 @@ class UDom {
 
     return typeof component !== 'string' ?
       (new component(props)).render(UDom.uCreateElement) :
-      new UDomNode({
-        tagName: component,
-        attributes: props as IUDom['attributes'],
-        inner: inner || '',
-        key
-      }, UDom._idCache, UDom._keyToIdMap)
+      new UDomNode(
+        {
+          tagName: component,
+          attributes: props as IUDom['attributes'],
+          inner,
+          key
+        },
+        UDom._idCache,
+        UDom._keyToIdMap
+      )
   }
 
-  public toHtmlString(inner?: IUDom | string): string {
+  public toHtmlString(inner?: IUDom | string | null): string {
+    if (!inner) {
+      return '';
+    }
+
     if (typeof inner === 'string') {
       return inner;
     }
 
-    const currentDom = inner || this._dom;
+    const currentDom = inner;
 
-    const [currentString, innerSeparator] = UDom._createStringElement(currentDom.tagName, currentDom.attributes);
-    let innerString = '';
+    const [currentString, innerSeparator] = this._createStringElement(currentDom.tagName, currentDom.attributes);
+    let innerString: string;
 
     if (Array.isArray(currentDom.inner)) {
-      innerString = currentDom.inner.map((currentInner) => {
-        return Array.isArray(currentInner) ?
-          currentInner.map((deepCurrentInner) => this.toHtmlString(deepCurrentInner)).join('') :
-          this.toHtmlString(currentInner)
-      }).join('');
+      innerString = currentDom.inner.map((currentInner) => this.toHtmlString(currentInner)).join('');
     } else {
       innerString = this.toHtmlString(currentDom.inner);
     }

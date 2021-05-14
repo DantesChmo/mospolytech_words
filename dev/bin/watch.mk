@@ -6,7 +6,7 @@ watch:
 
 .PHONY: watch-client
 watch-client:
-	./node_modules/.bin/webpack
+	./node_modules/.bin/webpack --watch
 
 .PHONY: watch-server
 watch-server:

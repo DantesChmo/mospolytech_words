@@ -1,32 +1,26 @@
-// Generated using webpack-cli http://github.com/webpack-cli
 const path = require('path');
 
+const isomorphicPath = path.resolve(__dirname, './src/lib/isomorphic');
+const clientPath = path.resolve(__dirname, './src/static/client');
+
 module.exports = {
-  watch: true,
+  context: path.resolve(__dirname, './'),
   mode: 'development',
   entry: './src/static/common/common_client.ts',
   output: {
     path: path.resolve(__dirname, 'out/static/generated'),
   },
-  plugins: [
-    {
-      apply: (compiler) => {
-        compiler.hooks.done.tap('DonePlugin', (stats) => {
-          setTimeout(() => {
-            process.exit(0)
-          })
-        });
-      }
-    }
-    // Add your plugins here
-    // Learn more obout plugins from https://webpack.js.org/configuration/plugins/
-  ],
   module: {
     rules: [
       {
-        test: /_?client\.(ts|tsx)$/,
+        test: /_?client\.ts$/,
         loader: 'ts-loader',
         exclude: ['/node_modules/'],
+      },
+      {
+        test: /\.ts$/,
+        loader: 'ts-loader',
+        include: [isomorphicPath, clientPath],
       },
       {
         test: /\.css$/i,

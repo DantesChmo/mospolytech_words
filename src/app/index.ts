@@ -1,17 +1,15 @@
 import express from 'express';
-import path from 'path'
-import {router} from '../router';
+import bodyParser from 'body-parser';
+import { router } from '../router';
+import { errorMiddleware } from '../middlewares/error-middleware';
+import { staticMiddleware } from '../middlewares/static-middleware';
 
-const staticPath = path.resolve(__dirname, '../../out/static/generated');
-
-const app = express();
-
-if (process.env.NODE_ENV !== 'production') {
-  app.use(express.static(staticPath));
-}
-
-app.use(router.getExpressRouter());
-
+const app = express()
+  .use(bodyParser.urlencoded({extended: true}))
+  .use(bodyParser.json())
+  .use(staticMiddleware)
+  .use(router.getExpressRouter())
+  .use(errorMiddleware);
 
 export {
   app

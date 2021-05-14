@@ -17,12 +17,9 @@ RUN yarn build
 RUN npm install -g synp
 RUN synp --source-file yarn.lock
 
-FROM alpine
+FROM node
 
 WORKDIR /usr/local/app
-
-RUN apk add nodejs
-RUN apk add npm
 
 COPY --from=build /tmp/out ./out
 COPY --from=build /tmp/package.json .

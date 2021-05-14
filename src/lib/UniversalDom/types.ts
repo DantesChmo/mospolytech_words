@@ -1,4 +1,4 @@
-type UFunction<E, P, I> = (component: UComponentType<P>, props: P, ...inner: (InnerType<I>)[]) => E;
+type UFunction<E, P, I> = (component: UComponentType<P>, props: P, ...inner: (InnerType)[]) => E;
 
 type UComponentType<T> = IUComponentType<T> & (new (props: T) => UComponentType<T>);
 
@@ -9,15 +9,16 @@ type UComponentKey = string | number | undefined;
 type CommonProps = {
   id?: string,
   className?: string,
-  key?: UComponentKey
+  key?: UComponentKey,
+  children?: any
 } | UComponentAttributes;
 
 type ClientProps = Omit<CommonProps, 'key'> | null;
 
-type InnerType<T> = T[] | string[] | T | string;
+type InnerType = (IUDom | string | null | undefined)[] | IUDom | string | null | undefined;
 
 interface IUComponentType<P extends CommonProps | undefined> {
-  render?<E extends (IUDom | Element), I extends InnerType<E>>(u: UFunction<E, P, I>): E;
+  render?<E extends (IUDom | Element), I extends InnerType>(u: UFunction<E, P, I>): E;
 }
 
 interface UPageBaseSettings {
@@ -51,7 +52,7 @@ interface IUDom {
   id: string;
   key?: UComponentKey;
   attributes: UComponentAttributes;
-  inner: (IUDom[] | string[] | IUDom | string)[] | IUDom | string | undefined;
+  inner: InnerType;
 }
 
 export {

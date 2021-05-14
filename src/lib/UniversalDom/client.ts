@@ -45,12 +45,12 @@ function appendInner(root: Element, inner: Element | string) {
 function uCreateElementClient<T extends ClientProps>(
   component: UComponentType<T> | string,
   props: T = null,
-  ...inner: InnerType<Element>[]
+  ...inner: any[]
 ): Element {
   let root: Element | undefined;
 
   if (typeof component !== 'string') {
-    const instance = new component(props);
+    const instance = new component({...props, ...(inner && {children: inner})});
     root = instance!.render!(uCreateElementClient);
   } else {
     root = document.createElement(component);

@@ -1,0 +1,13 @@
+@import '../views/pages/Login/Login.css';
+
+@import '../views/base/TextInput/TextInput.css';
+@import '../views/base/Header/Header.css';
+
+@import '../views/keyboard/KeyboardKey/KeyboardKey.css';
+@import '../views/keyboard/KeyboardGrid/KeyboardGrid.css';
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}

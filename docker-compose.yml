@@ -1,0 +1,65 @@
+version: '3.5'
+
+services: 
+  database:
+    image: postgres:alpine
+    container_name: "database"
+    hostname: "database"
+    restart: always
+    networks:
+      - my_network
+    ports:
+      - 5432:5432
+    env_file:
+      - ./dev/db/.env
+    volumes:
+      - ./dev/db/init-db.sql:/docker-entrypoint-initdb.d/init.sql
+    expose:
+      - 5432
+
+  migrator:
+    build:
+      context: .
+      dockerfile: ./dev/db/migrator.dockerfile
+    container_name: "migrator"
+    network_mode: "host"
+    env_file:
+      - ./dev/db/.env
+    depends_on:
+      - database
+    command: ['./dev/db/wait-for.sh', '--', 'make', 'migrate']
+
+  adminer:
+    image: adminer:latest
+    container_name: "adminer"
+    restart: always
+    depends_on:
+      - migrator
+    ports:
+      - 8000:8080
+    expose:
+      - 8000
+
+  app:
+    build:
+      context: .
+      dockerfile: ./dev.dockerfile
+    container_name: "app"
+    env_file:
+      - ./dev/db/.env
+    depends_on: 
+      - adminer
+    volumes:
+      - ./src:/usr/local/app/src
+    networks:
+      - my_network
+    ports:
+    - 8080:8080
+    expose:
+      - 8080
+      - 5432
+    command: ['yarn', 'watch']
+
+networks:
+  my_network:
+    name: my_network

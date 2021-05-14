@@ -1,0 +1,24 @@
+.KeyboardKey {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 48px;
+  height: 48px;
+  border-radius: 8px;
+  box-sizing: border-box;
+  border: 2px solid #e8e8e8;
+  background: #f3fdfc;
+  color: #5a5a5a;
+  cursor: default;
+  font-size: 28px;
+  margin: 4px;
+  padding: 8px;
+  transform: scale(1);
+  transition: transform .2s ease-in-out;
+}
+
+.KeyboardKey_pressed {
+  transform: scale(0.9);
+  background: #abdc60;
+  color: white
+}

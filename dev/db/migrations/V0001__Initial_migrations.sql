@@ -1,0 +1,4 @@
+CREATE TABLE foo (
+    id SERIAL NOT NULL PRIMARY KEY,
+    bar TEXT NOT NULL
+);

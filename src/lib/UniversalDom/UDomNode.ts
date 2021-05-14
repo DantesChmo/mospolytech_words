@@ -1,6 +1,7 @@
 import {
   UComponentAttributes,
-  IUDom
+  IUDom,
+  InnerType
 } from './types';
 
 class UDomNode implements IUDom {
@@ -14,10 +15,10 @@ class UDomNode implements IUDom {
 
   public attributes: UComponentAttributes;
 
-  public inner: string | IUDom | (string | IUDom | string[] | IUDom[])[];
+  public inner: InnerType;
 
   constructor(
-    props: Omit<IUDom, 'id'>,
+    props: any,
     idCache: Set<string>,
     keyToIdMap: Record<string | number, string>
   ) {
@@ -27,7 +28,15 @@ class UDomNode implements IUDom {
     const {tagName, inner, attributes, key} = props;
 
     this.tagName = tagName;
-    this.inner = inner;
+
+    if (Array.isArray(inner) && inner.length === 0) {
+      this.inner = null;
+    } else if (Array.isArray(inner) && inner.length === 1) {
+      this.inner = inner[0];
+    } else {
+      this.inner = inner;
+    }
+
     this.attributes = UDomNode._parseAttributes({
       ...attributes,
       ...(key && {'data-key': key})
