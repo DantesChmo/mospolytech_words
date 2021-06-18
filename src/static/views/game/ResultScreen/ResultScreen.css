@@ -1,0 +1,17 @@
+.ResultScreen {
+  width: 400px;
+  height: 60px;
+  background: grey;
+  margin: 24px auto;
+  font-size: 48px;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  padding: 24px;
+}
+
+.ResultScreen__NextLetter {
+  color: darkgrey;
+}

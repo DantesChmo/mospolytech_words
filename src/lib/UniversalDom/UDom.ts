@@ -29,7 +29,14 @@ class UDom {
 
   private _createStringElement(tagName: string, attributes: UComponentAttributes): [string, string] {
     const attributesString = attributes ? Object.entries(attributes).reduce((result, [key, value]) => {
-      result.push(`${key === 'className' ? 'class' : key}="${value}"`);
+      if (value) {
+        if (typeof value === 'boolean') {
+          result.push(key);
+        } else {
+          result.push(`${key === 'className' ? 'class' : key}="${value}"`);
+        }
+      }
+
       return result;
     }, []).join(' ') : '';
 
@@ -40,14 +47,11 @@ class UDom {
   }
 
   public createApp(settings?: UAppSettings): string {
-    console.log(JSON.stringify(this._dom, null, 2));
     const appContent = this.toHtmlString(this._dom);
     const config = this._createConfig();
 
-    const body = `${appContent}${config}`;
-
     return this._createWithOuterHtml({
-      body,
+      body: appContent,
       config,
       ...(settings && {...settings})
     });
@@ -118,8 +122,8 @@ class UDom {
     body = '',
     config = '',
     title = 'Document',
-    scripts = [],
-    styles = []
+    scripts,
+    styles
   }: UHtmlSettings) {
     return `
       <!doctype html>
@@ -129,13 +133,13 @@ class UDom {
           <meta name="viewport"
                 content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
           <meta http-equiv="X-UA-Compatible" content="ie=edge">
-          ${(Array.isArray(styles) ? styles : [styles]).map((styleLink) => `<link rel="stylesheet" href="${styleLink}">`)}
+          ${config}
+          ${scripts ? ((Array.isArray(scripts) ? scripts : [scripts]).map((scriptLink) => `<script src="${scriptLink}"></script>`)) : ''}
+          ${styles ? ((Array.isArray(styles) ? styles : [styles]).map((styleLink) => `<link rel="stylesheet" href="${styleLink}">`)) : ''}
           <title>${title}</title>
       </head>
       <body>
         ${body}
-        ${config}
-        ${(Array.isArray(scripts) ? scripts : [scripts]).map((scriptLink) => `<script src="${scriptLink}"></script>`)}
       </body>
       </html>
     `;

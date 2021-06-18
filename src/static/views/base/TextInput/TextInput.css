@@ -26,7 +26,7 @@
 }
 
 .TextInput__Clear {
-  display: block;
+  display: none;
   border: none;
   margin: 0;
   padding: 0;
@@ -35,7 +35,11 @@
   height: 24px;
   outline: none;
   opacity: 0;
-  transition: opacity .2s ease-in-out;
+  transition: opacity .2s ease-in-out, transform .2s ease-out;
+}
+
+.TextInput__Clear:focus {
+  transform: scale(1.2);
 }
 
 .TextInput__Label {
@@ -45,15 +49,18 @@
   background: inherit;
   padding: 4px 8px;
   pointer-events: none;
+  font-size: 16px;
   transform: translate(8px, 50%);
-  transition: transform .2s ease-in-out;
+  transition: transform .2s ease-in-out, font-size .2s ease-out;
 }
 
 .TextInput__Input_hasValue ~ .TextInput__Label,
 .TextInput__Input:focus ~ .TextInput__Label {
+  font-size: 12px;
   transform: translate(0, 0);
 }
 
 .TextInput__Input_hasValue ~ .TextInput__Clear {
+  display: inline-block;
   opacity: 1;
 }

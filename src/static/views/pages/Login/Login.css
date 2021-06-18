@@ -1,3 +1,7 @@
+@import '../../base/TextInput/TextInput.css';
+@import '../../base/Header/Header.css';
+@import '../../base/Button/Button.css';
+
 .LoginPage {
   position: relative;
   height: 100vh;
@@ -29,4 +33,10 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  box-sizing: border-box;
+  padding: 0 80px;
+}
+
+.LoginPage__SubmitButton {
+  margin-top: 32px;
 }

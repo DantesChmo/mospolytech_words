@@ -1,0 +1,74 @@
+.TextArea {
+  margin-top: 26px;
+  position: relative;
+  display: inline-block;
+  min-width: 180px;
+  max-width: 360px;
+  min-height: 26px;
+  border: 1px solid grey;
+  border-radius: 4px;
+  padding: 0 4px;
+  box-sizing: border-box;
+  background: inherit;
+  cursor: text;
+}
+
+.TextArea__Inner {
+  outline: none;
+  display: inline-block;
+  line-height: 24px;
+  font-size: 13px;
+  height: 100%;
+  max-width: 100%;
+  background: inherit;
+}
+
+.TextArea__Label {
+  display: inline-block;
+  padding: 4px 8px;
+  background: inherit;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translate(8px, -50%);
+  transition: transform .2s ease-in-out, font-size .2s ease-out;
+  font-size: 16px;
+}
+
+.TextArea__Inner:focus ~ .TextArea__Label,
+.TextArea_hasValue .TextArea__Label {
+  transform: translate(0, calc(-100% - 1px));
+  font-size: 12px;
+}
+
+.TextArea__Clear {
+  display: none;
+  position: absolute;
+  border: none;
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  width: 24px;
+  height: 24px;
+  right: 0;
+  outline: none;
+  opacity: 0;
+  transition: opacity .2s ease-in-out, transform .2s ease-in-out;
+}
+
+.TextArea__Clear:focus {
+  transform: translateX(0) scale(1.2);
+}
+
+.TextArea__Clear_position_right.TextArea__Clear:focus {
+  transform: translateX(100%) scale(1.2);
+}
+
+.TextArea_hasValue .TextArea__Clear {
+  display: inline-block;
+  opacity: 1;
+}
+
+.TextArea__Clear_position_right {
+  transform: translateX(100%);
+}

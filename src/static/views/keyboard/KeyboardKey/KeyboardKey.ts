@@ -1,5 +1,4 @@
 import { UComponent } from '../../../../lib/UniversalDom';
-import { bem } from '../../../../lib/isomorphic/bem';
 
 type Props = {
   content: string,
@@ -8,15 +7,13 @@ type Props = {
   span?: number
 }
 
-const b = bem('KeyboardKey');
-
 class KeyboardKey extends UComponent<Props> {
   render(u) {
     return (
       u(
         'span',
         {
-          className: b(),
+          className: this.b(),
           key: `key-${this.props.keyCode}`,
           ...(this.props.span && {style: `flex-grow: ${this.props.span}`})
         },

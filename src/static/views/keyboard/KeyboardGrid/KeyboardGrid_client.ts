@@ -1,14 +1,22 @@
 import { $u } from '../../../../lib/UniversalDom/client';
 
 class KeyboardGrid {
-  private static _keyDown(e: KeyboardEvent): void {
+  public static keyDown(e: KeyboardEvent): void {
+    if (!KeyboardGrid._isKeyboardExist()) {
+      return
+    }
+
     const keyString = `key-${e.keyCode}`;
 
     const $keyButton = $u({key: keyString});
     $keyButton.classList.add('KeyboardKey_pressed');
   }
 
-  private static _keyUp(e: KeyboardEvent): void {
+  public static keyUp(e: KeyboardEvent): void {
+    if (!KeyboardGrid._isKeyboardExist()) {
+      return
+    }
+
     const keyString = `key-${e.keyCode}`;
 
     const $keyButton = $u({key: keyString});
@@ -19,15 +27,6 @@ class KeyboardGrid {
     const $keyboard = $u({key: 'keyboard-grid'});
 
     return Boolean($keyboard);
-  }
-
-  static init() {
-    if (!KeyboardGrid._isKeyboardExist()) {
-      return;
-    }
-
-    window.addEventListener('keydown', KeyboardGrid._keyDown);
-    window.addEventListener('keyup', KeyboardGrid._keyUp);
   }
 }
 

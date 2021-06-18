@@ -19,5 +19,8 @@ abstract class Handler implements IHandler {
 export {
   Handler,
   HandlerType,
-  HandlerMethodType
+  HandlerMethodType,
+  Request,
+  Response,
+  NextFunction
 };

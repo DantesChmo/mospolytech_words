@@ -1,5 +1,5 @@
-import {UDom} from './UDom';
-import {UComponent} from './UComponent';
+import { UDom } from './UDom';
+import { UComponent } from './UComponent';
 
 /*
   u('div', {},

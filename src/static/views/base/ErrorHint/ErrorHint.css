@@ -1,0 +1,48 @@
+.ErrorHint {
+  background: #ac0202;
+  position: fixed;
+  width: 280px;
+  max-width: 320px;
+  padding: 12px;
+  box-sizing: border-box;
+  height: 92px;
+  max-height: 104px;
+  bottom: 48px;
+  right: 48px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  border-radius: 8px;
+  animation: onCreate .2s ease-in-out;
+}
+
+.ErrorHint__CloseButton {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  cursor: pointer;
+  border: none;
+  padding: 0;
+  color: white;
+  background: none;
+  width: 24px;
+  height: 24px;
+}
+
+.ErrorHint__Text {
+  display: inline-block;
+  margin-top: 8px;
+}
+
+@keyframes onCreate {
+  from {
+    opacity: 0;
+    transform: translateY(50%);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

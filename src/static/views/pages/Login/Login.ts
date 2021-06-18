@@ -1,22 +1,25 @@
 import { UComponent } from '../../../../lib/UniversalDom';
-import { bem } from '../../../../lib/isomorphic/bem';
 import { TextInput } from '../../base/TextInput';
-import { Form } from '../../base/Form';
 import { Header } from '../../base/Header';
-
-const b = bem('LoginPage');
+import { Button } from '../../base/Button';
 
 class LoginPage extends UComponent<{}> {
   render(u) {
     return (
-      u('div', {className: b()},
+      u('div', {className: this.b()},
         u(Header),
-        u('form', {onsubmit: 'LoginPage.login(event)', className: b('Form')},
-          u('div', {className: b('BoxWrap')},
-            u('div', {className: b('Box')},
+        u('form', {onsubmit: 'LoginPage.login_page(event)', className: this.b('Form')},
+          u('div', {className: this.b('BoxWrap')},
+            u('div', {className: this.b('Box')},
               u(TextInput, {label: 'Логин', clear: true, name: 'login', type: 'email'}),
-              u(TextInput, {label: 'Пароль', clear: true, name: 'password', type: 'password'})
-            )
+              u(TextInput, {label: 'Пароль', clear: true, name: 'password', type: 'password'}),
+              u(Button, {
+                className: this.b('SubmitButton'),
+                type: 'submit',
+                text: 'Войти',
+                fitToParent: true
+              })
+            ),
           )
         )
       )

@@ -5,16 +5,17 @@ import { badRequest } from '@hapi/boom';
 type JoiRoot = typeof Joi;
 
 function requestValidatorsFactory(key: keyof Request) {
-  return function (schemaFunction: (Joi: JoiRoot) => Object) {
+  return function<T> (schemaFunction: (Joi: JoiRoot) => Joi.ObjectSchema<T>) {
+    const schema = schemaFunction(Joi).required();
+
     return function (
       target: any,
       propertyName: string,
       descriptor: TypedPropertyDescriptor<Function>
     ) {
       const originFunction = descriptor.value!;
-      const schema = Joi.object(schemaFunction(Joi)).required();
 
-      descriptor.value = function (
+      descriptor.value = async function (
         req: Request,
         res: Response,
         next: NextFunction
@@ -24,7 +25,7 @@ function requestValidatorsFactory(key: keyof Request) {
           throw badRequest(error.message);
         }
 
-        return originFunction.apply(this, arguments);
+        return originFunction.apply(this, [req, res, next]);
       }
     };
   };

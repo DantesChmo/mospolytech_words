@@ -1,7 +1,4 @@
 import { UComponent } from '../../../../lib/UniversalDom';
-import { bem } from '../../../../lib/isomorphic/bem';
-
-const b = bem('Header');
 
 class Header extends UComponent<{}> {
   private readonly _links = [
@@ -13,12 +10,12 @@ class Header extends UComponent<{}> {
 
   render(u) {
     return (
-      u('header', {className: b()},
-        u('nav', {className: b('Navigation')},
-          u('ul', {className: b('List')},
+      u('header', {className: this.b()},
+        u('nav', {className: this.b('Navigation')},
+          u('ul', {className: this.b('List')},
             this._links.map(({path, content}) => (
-              u('li', {className: b('ListItem')},
-                u('a', {className: b('Link'), href: path}, content)
+              u('li', {className: this.b('ListItem')},
+                u('a', {className: this.b('Link'), href: path}, content)
               )
             ))
           )

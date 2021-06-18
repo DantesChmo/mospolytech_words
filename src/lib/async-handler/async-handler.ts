@@ -4,7 +4,11 @@ import { badImplementation } from '@hapi/boom';
 function asyncHandler(target: any, propertyName: string, descriptor: any) {
   const handler = descriptor.value!;
 
-  descriptor.value = async (req: Request, res?: Response, next?: NextFunction) => {
+  descriptor.value = wrapAsyncMiddleware(handler);
+}
+
+function wrapAsyncMiddleware(handler) {
+  return async (req: Request, res?: Response, next?: NextFunction) => {
     return Promise.resolve(handler(req, res, next)).catch((err) => {
       if (!err.isBoom) {
         return next(badImplementation(err));
@@ -15,5 +19,6 @@ function asyncHandler(target: any, propertyName: string, descriptor: any) {
 }
 
 export {
-  asyncHandler,
+  wrapAsyncMiddleware,
+  asyncHandler
 };

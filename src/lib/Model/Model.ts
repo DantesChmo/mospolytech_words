@@ -1,11 +1,27 @@
+import { knex, Knex } from 'knex';
+
 abstract class Model<T> {
-  public abstract create<T>(fields: T): Promise<void>;
+  private readonly _queryBuilder = knex({client: 'pg'})
 
-  public abstract read<T>(): Promise<T>;
+  private readonly _tableName: string;
 
-  public abstract update<T>(fields: T): Promise<T>;
+  protected constructor(tableName: string) {
+    this._tableName = tableName;
+  }
 
-  public abstract delete(id: string): Promise<string>;
+  protected query(queryWriter: (queryBuilder: ReturnType<Knex>) => any) {
+    return queryWriter(this._queryBuilder(this._tableName)).toString();
+  }
+
+  public abstract create(fields: T): Promise<void>;
+
+  public abstract read(key: keyof T, value: T[keyof T]): Promise<T | null>;
+
+  public abstract readAll(): Promise<T[] | null>;
+
+  public abstract update(fields: T): Promise<void>;
+
+  public abstract delete(id: string): Promise<string | null>;
 }
 
 export {

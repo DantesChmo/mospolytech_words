@@ -1,9 +1,12 @@
-import {$u, u} from '../../../../lib/UniversalDom/client';
-
 class Button {
-  static onClick() {
-    const input = $u({key: 'input_keyboard'});
-    input.classList.toggle('show');
+  private static _buttonPressedSelector = 'Button_pressed';
+
+  static onDown(element: HTMLButtonElement) {
+    element.classList.add(Button._buttonPressedSelector);
+  }
+
+  static onUp(element: HTMLButtonElement) {
+    element.classList.remove(Button._buttonPressedSelector);
   }
 }
 

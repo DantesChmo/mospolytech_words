@@ -33,6 +33,8 @@ services:
     image: adminer:latest
     container_name: "adminer"
     restart: always
+    networks:
+      - my_network
     depends_on:
       - migrator
     ports:
