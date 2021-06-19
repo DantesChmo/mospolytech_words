@@ -1,4 +1,4 @@
-function getFormValues(form: HTMLFormElement): Record<string, string | number | boolean> | null {
+function getFormValues<T extends Record<string, string | number | boolean>>(form: HTMLFormElement): T | null {
   const selector = 'input[name],span[role="textbox"]';
   const inputElements = form.querySelectorAll<HTMLInputElement>(selector);
 
@@ -11,11 +11,11 @@ function getFormValues(form: HTMLFormElement): Record<string, string | number | 
     const value = input.value;
 
     if (name && value) {
-      result[name] = value;
+      (result as unknown)[name] = value;
     }
 
     return result;
-  }, {});
+  }, {} as T);
 }
 
 export {

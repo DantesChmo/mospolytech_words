@@ -18,6 +18,12 @@ router
     handler: AdminPageHandler,
     callback: 'createLesson'
   })
+  .add({
+    method: 'POST',
+    path: '/login',
+    handler: LoginPageHandler,
+    callback: 'login'
+  })
   .add({path: '/admin', middlewares: authMiddleware, handler: AdminPageHandler})
   .add({path: '/lessons', handler: LessonsPageHandler})
   .add({path: '/lesson/:lessonId', handler: LessonPageHandler})

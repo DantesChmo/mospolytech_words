@@ -39,6 +39,10 @@ class LessonModel extends Model<LessonTable> {
     return Array.isArray(result) ? result[0] : null;
   }
 
+  async readByPath(treePosition: string): Promise<LessonTable> {
+    return await this.read('tree_position', treePosition);
+  }
+
   async readById(value: string): Promise<LessonTable> {
     return await this.read('id', value)
   }

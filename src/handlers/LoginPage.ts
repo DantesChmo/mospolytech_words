@@ -17,14 +17,17 @@ class LoginPageHandler extends Handler {
 
   @asyncHandler
   @validateBody((Joi) => Joi.object<User.LoginUserReqBody>({
-    name: Joi.string().required(),
     password: Joi.string().required(),
     email: Joi.string().email().required()
   }))
   async login(req, res) {
-    const {name, password} = req.body;
+    const {email, password} = req.body;
 
-    const hash = await LoginPageController.login(name, password);
+    if (req.cookies.token) {
+      res.send({ok: true});
+    }
+
+    const hash = await LoginPageController.login(email, password);
 
     if (!hash) {
       res.redirect('/login');
@@ -32,7 +35,7 @@ class LoginPageHandler extends Handler {
     }
 
     res.cookie('token', hash);
-    res.redirect('/');
+    res.send({ok: true});
   }
 
   @asyncHandler

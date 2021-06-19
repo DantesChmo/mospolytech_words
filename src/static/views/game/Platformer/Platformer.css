@@ -1,0 +1,35 @@
+.Platformer {
+  position: relative;
+  width: 700px;
+  height: 200px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.Platformer__Inner {
+  width: 100%;
+  position: absolute;
+  background: deepskyblue;
+  bottom: 0;
+  left: 0;
+  transition: transform .2s ease-out;
+}
+
+.Platformer__Step {
+  position: absolute;
+  background: #473d01;
+  height: 20px;
+  border-radius: 8px;
+  width: 100px;
+}
+
+.Platformer__Player {
+  position: absolute;
+  left: 50px;
+  bottom: 20px;
+  width: 18px;
+  height: 18px;
+  background: white;
+  border-radius: 50%;
+  transition: transform .6s ease-in-out;
+}

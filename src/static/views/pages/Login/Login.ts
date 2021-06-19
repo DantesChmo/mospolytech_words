@@ -8,10 +8,10 @@ class LoginPage extends UComponent<{}> {
     return (
       u('div', {className: this.b()},
         u(Header),
-        u('form', {onsubmit: 'LoginPage.login_page(event)', className: this.b('Form')},
+        u('form', {onsubmit: 'LoginPage.login(event, this)', className: this.b('Form')},
           u('div', {className: this.b('BoxWrap')},
             u('div', {className: this.b('Box')},
-              u(TextInput, {label: 'Логин', clear: true, name: 'login', type: 'email'}),
+              u(TextInput, {label: 'Логин', clear: true, name: 'email', type: 'email'}),
               u(TextInput, {label: 'Пароль', clear: true, name: 'password', type: 'password'}),
               u(Button, {
                 className: this.b('SubmitButton'),

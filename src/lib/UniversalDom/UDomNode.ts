@@ -36,6 +36,7 @@ class UDomNode implements IUDom {
     } else {
       this.inner = inner;
     }
+    console.log(this.inner);
 
     this.attributes = UDomNode._parseAttributes({
       ...attributes,

@@ -28,9 +28,7 @@ class ResultScreen {
     const currentProgress: string = Store.getData('gameProgress');
     const nextLetter = lessonContent[currentProgress.length];
     const nextLetterElement = `<span class="ResultScreen__NextLetter">${nextLetter}</span>`;
-    const innerHTML = Store.getData('gameProgress') + nextLetterElement;
-    console.log(innerHTML);
-    $screen.innerHTML = innerHTML;
+    $screen.innerHTML = Store.getData('gameProgress') + nextLetterElement;
   }
 }
 

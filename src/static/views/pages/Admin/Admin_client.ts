@@ -12,7 +12,6 @@ class AdminPage {
     e.preventDefault();
 
     const formValues = getFormValues(element);
-    console.log('ALL', formValues);
 
     const response = await ajax<{}, Lesson.CreateLessonRequestBody>({
       path: '/admin/create_lesson',
