@@ -6,7 +6,7 @@ const pgClient = new PgClient({
   user: process.env.POSTGRES_USER,
   password: process.env.POSTGRES_PASSWORD,
   database: process.env.POSTGRES_DB,
-  string: 'postgres://db_user:db_user@database:5432/words'
+  string: process.env.POSTGRES_CONNECTION_STRGING || 'postgres://db_user:db_user@database:5432/words'
 });
 
 const redisClient = new RedisClient({});

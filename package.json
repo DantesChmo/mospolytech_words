@@ -16,6 +16,7 @@
   "scripts": {
     "up": "docker-compose up -d --no-recreate --remove-orphans && npm run logs:dev",
     "down": "docker-compose down --rmi local",
+    "migrate:staging": "docker-compose -f ./staging.docker-compose.yml up && docker-compose -f ./staging.docker-compose.yml down",
     "restart": "npm run down && npm run up",
     "bootstrap": "make bootstrap",
     "clean": "make clean",

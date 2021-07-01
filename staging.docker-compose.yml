@@ -1,0 +1,10 @@
+version: '3.5'
+
+services:
+  migrator:
+    build:
+      context: .
+      dockerfile: ./dev/db/migrator.dockerfile
+    container_name: "migrator"
+    network_mode: "host"
+    command: ['make', 'migrate_staging']
