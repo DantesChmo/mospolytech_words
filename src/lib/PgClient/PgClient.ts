@@ -10,7 +10,8 @@ class PgClient {
       user: settings.user,
       password: settings.password,
       database: settings.database,
-      max: 10
+      max: 10,
+      ssl: settings.ssl
     });
   }
 

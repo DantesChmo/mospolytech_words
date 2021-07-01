@@ -6,6 +6,7 @@ const pgClient = new PgClient({
   user: process.env.POSTGRES_USER,
   password: process.env.POSTGRES_PASSWORD,
   database: process.env.POSTGRES_DB,
+  ssl: Boolean(process.env.POSTGRES_SSL)
 });
 
 const redisClient = new RedisClient({});
