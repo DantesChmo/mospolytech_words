@@ -25,7 +25,6 @@ COPY --from=build /tmp/out ./out
 COPY --from=build /tmp/package.json .
 COPY --from=build /tmp/yarn.lock .
 
-RUN yarn install --frozen-lockfile
-RUN yarn prune --production
+RUN yarn install --production --frozen-lockfile
 
 ENTRYPOINT ["node","out/index.js"]
