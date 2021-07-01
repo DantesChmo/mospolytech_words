@@ -1,0 +1,36 @@
+@import '../../base/Header/Header.css';
+@import '../../../common/animations.css';
+
+.MainPage__Main {
+  display: flex;
+  flex-direction: column;
+  padding: 10vh 64px;
+}
+
+.MainPage__Title, .MainPage__Subtitle {
+  font-family: Monospace, Arial, sans-serif;
+  white-space: nowrap;
+  overflow: hidden;
+  position: relative;
+}
+
+.MainPage__Title {
+  color: #989696;
+  width: 12ch;
+  margin: 0 0 24px 0;
+  animation:
+    show 5s steps(12),
+    cursor .75s ease infinite
+}
+
+.MainPage__Subtitle {
+  margin: 0 0 48px 0;
+  color: #3c3c3c;
+}
+
+.MainPage__VideoContainer {
+  display: block;
+  width: 800px;
+  animation: fadeIn .5s ease-in;
+  z-index: -1;
+}

@@ -6,6 +6,11 @@ type Props = {
 };
 
 class LessonsPage extends UComponent<Props> {
+  private renderLessonsList(u) {
+    const {tree_position: path} = this.props.lessons;
+    const treePath = path.split('/').slice(1);
+  }
+
   private _renderLessonsList(u) {
     return (
       u('ul', {className: this.b('LessonList')},

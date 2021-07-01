@@ -1,7 +1,11 @@
 .ResultScreen {
+  font-family: monospace, Arial, sans-serif;
   width: 400px;
   height: 60px;
-  background: grey;
+  background: #f7f7f7;
+  border-radius: 12px;
+  box-shadow: 0 4px 2px #efefef;
+  color: #5a5a5a;
   margin: 24px auto;
   font-size: 48px;
   font-weight: bold;
@@ -10,6 +14,13 @@
   align-items: center;
   overflow: hidden;
   padding: 24px;
+  white-space: nowrap;
+}
+
+.ResultScreen__Inner {
+  display: flex;
+  justify-content: flex-end;
+  overflow: hidden;
 }
 
 .ResultScreen__NextLetter {

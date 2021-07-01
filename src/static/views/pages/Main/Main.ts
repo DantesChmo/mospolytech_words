@@ -1,19 +1,30 @@
 import { UComponent } from '../../../../lib/UniversalDom';
 import { Header } from '../../base/Header';
-import { Button } from '../../base/Button';
 
 class MainPage extends UComponent<{}> {
   render(u) {
     return (
       u('div', {className: 'MainPage'},
         u(Header),
-        u(Button, {
-          className: 'MainPage-Button',
-          text: 'button text',
-          onClick: 'MainPage.onButtonClick()'
-        }),
-        u('span', {key: 'hello'}),
-        'SOME more Text'
+        u('main', {className: this.b('Main')},
+          u('h1', {className: this.b('Title')},
+            'Type as pro.'
+          ),
+          u('h2', {className: this.b('Subtitle')},
+            'Развитие навыка слепой печати'
+          ),
+          u('video', {
+              className: this.b('VideoContainer'),
+              loop: true,
+              autoplay: true,
+              muted: true
+            },
+            u('source', {
+              src: '/videos/keyboard_intro.mp4',
+              type: 'video/mp4'
+            })
+          )
+        )
       )
     );
   }

@@ -1,6 +1,7 @@
 @import '../../base/TextInput/TextInput.css';
 @import '../../base/Header/Header.css';
 @import '../../base/Button/Button.css';
+@import '../../../common/animations.css';
 
 .LoginPage {
   position: relative;
@@ -35,6 +36,7 @@
   justify-content: center;
   box-sizing: border-box;
   padding: 0 80px;
+  animation: bounceIn 0.5s ease-in-out;
 }
 
 .LoginPage__SubmitButton {

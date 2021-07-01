@@ -6,15 +6,21 @@ function getFormValues<T extends Record<string, string | number | boolean>>(form
     return null;
   }
 
-  return Array.from(inputElements).reduce((result, input) => {
-    const name = input.getAttribute('name');
-    const value = input.value;
+  return Array.from(inputElements)
+    .filter(Boolean)
+    .reduce((result, input) => {
+      const name = input.getAttribute('name');
+      const value = input.value;
 
-    if (name && value) {
-      (result as unknown)[name] = value;
-    }
+      if (name && value) {
+        if (result[name]) {
+          (result as unknown)[name] = input.checked ? value : result[name];
+        } else {
+          (result as unknown)[name] = value;
+        }
+      }
 
-    return result;
+      return result;
   }, {} as T);
 }
 

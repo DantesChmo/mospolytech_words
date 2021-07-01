@@ -1,5 +1,5 @@
-import {$u} from '../../../../lib/UniversalDom/client';
-import {Store} from '../../../client/Store';
+import { $u } from '../../../../lib/UniversalDom/client';
+import { Store } from '../../../client/Store';
 
 class ResultScreen {
   public static onKeyUp(e: KeyboardEvent) {

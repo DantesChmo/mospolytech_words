@@ -134,6 +134,7 @@ class UDom {
                 content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
           <meta http-equiv="X-UA-Compatible" content="ie=edge">
           ${config}
+          <script src="/common_client.js"></script>
           ${scripts ? ((Array.isArray(scripts) ? scripts : [scripts]).map((scriptLink) => `<script src="${scriptLink}"></script>`)) : ''}
           ${styles ? ((Array.isArray(styles) ? styles : [styles]).map((styleLink) => `<link rel="stylesheet" href="${styleLink}">`)) : ''}
           <title>${title}</title>

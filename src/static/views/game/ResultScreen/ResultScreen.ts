@@ -7,8 +7,10 @@ type Props = {
 class ResultScreen extends UComponent<Props> {
   render(u) {
     return (
-      u('div', {className: this.b(), key: 'ResultScreen'},
-        u('span', {className: this.b('NextLetter')}, this.props.firstLetter)
+      u('div', {className: this.b()},
+        u('div', {className: this.b('Inner'), key: 'ResultScreen'},
+          u('span', {className: this.b('NextLetter')}, this.props.firstLetter)
+        ),
       )
     );
   }

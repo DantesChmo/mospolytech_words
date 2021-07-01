@@ -4,7 +4,6 @@ class TextArea {
   static onClearClick(e: PointerEvent, element: HTMLButtonElement) {
     e.preventDefault();
     const root = element.parentElement as HTMLInputElement;
-    console.log(root);
     const input = root.querySelector('[role="textbox"]') as HTMLInputElement;
 
     input.value = '';

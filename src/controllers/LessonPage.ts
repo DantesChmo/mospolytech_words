@@ -16,7 +16,7 @@ class LessonPageController {
     return dom.createApp({scripts: '/lesson_page.js', styles: '/lesson_page.css'});
   }
 
-  static async getLesson(lessonPath: string): Promise<Lesson.GetLessonResponseBody> {
+  private static async getLesson(lessonPath: string): Promise<Lesson.GetLessonResponseBody> {
     const pathToLesson = `/${lessonPath.split('_').join('/')}`;
     const dbLesson = await lessonModel.readByPath(pathToLesson);
 

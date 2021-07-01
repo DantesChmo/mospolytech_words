@@ -3,10 +3,14 @@ const fs = require('fs');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const isomorphicPath = path.resolve(__dirname, './src/lib/isomorphic');
 const clientPath = path.resolve(__dirname, './src/static/client');
 const viewsPath = path.resolve(__dirname, './src/static/views');
+
+const resourcesSrcPath = path.resolve(__dirname, './src/static/resources');
+const resourcesOutPath = path.resolve(__dirname, './out/static/resources')
 
 const entriesPath = path.resolve(__dirname, './src/static/entries');
 
@@ -38,9 +42,6 @@ module.exports = {
         test: /\.(eot|svg|ttf|woff|woff2|png|jpg|gif)$/,
         type: 'asset',
       },
-
-      // Add your rules for custom modules here
-      // Learn more about loaders from https://webpack.js.org/loaders/
     ],
   },
   optimization: {
@@ -52,7 +53,12 @@ module.exports = {
     ],
   },
   plugins: [
-    new MiniCssExtractPlugin()
+    new MiniCssExtractPlugin(),
+    new CopyWebpackPlugin({
+      patterns: [{
+        from: resourcesSrcPath, to: resourcesOutPath
+      }]
+    })
   ],
   resolve: {
     extensions: ['.ts', '.css'],

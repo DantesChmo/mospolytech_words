@@ -1,6 +1,7 @@
 .Header {
   background: #f7d41a;
   padding: 24px 0;
+  box-shadow: 0 2px 8px #c3c3c3;
 }
 
 .Header__List {

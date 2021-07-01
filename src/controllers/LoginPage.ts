@@ -1,7 +1,7 @@
 import * as uuid from 'uuid';
-import {LoginPage} from '../static/views/pages/Login';
-import {u, UDom} from '../lib/UniversalDom';
-import {userModel} from '../models';
+import { LoginPage } from '../static/views/pages/Login';
+import { u, UDom } from '../lib/UniversalDom';
+import { userModel } from '../models';
 
 class LoginPageController {
   static render(): string {
