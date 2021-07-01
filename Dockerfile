@@ -14,8 +14,8 @@ RUN npm i yarn -g
 RUN yarn install
 RUN yarn build
 
-RUN npm install -g synp
-RUN synp --source-file yarn.lock
+# RUN npm install -g synp
+# RUN synp --source-file yarn.lock
 
 FROM node
 
@@ -23,9 +23,10 @@ WORKDIR /usr/local/app
 
 COPY --from=build /tmp/out ./out
 COPY --from=build /tmp/package.json .
-COPY --from=build /tmp/package-lock.json .
+COPY --from=build /tmp/yarn.lock .
 
 RUN npm ci
-RUN npm prune --production
+RUN yarn install --frozen-lockfile
+RUN yarn prune --production
 
 ENTRYPOINT ["node","out/index.js"]
