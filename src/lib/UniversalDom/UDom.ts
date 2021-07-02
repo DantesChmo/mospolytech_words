@@ -16,7 +16,6 @@ class UDom {
   private static _keyToIdMap: Record<string | number, string>;
 
   constructor(dom: IUDom) {
-
     this._dom = dom;
     if (!UDom._idCache) {
       UDom._idCache = new Set();

@@ -2,6 +2,7 @@ import { KeyboardGrid } from '../../views/keyboard/KeyboardGrid/KeyboardGrid_cli
 import { Lesson } from '../../views/pages/Lesson/Lesson_client';
 import { ResultScreen } from '../../views/game/ResultScreen/ResultScreen_client';
 import { Platformer } from '../../views/game/Platformer/Platformer_client';
+import { Dialog } from '../../views/game/Dialog/Dialog_client';
 
 import { keyObserver } from '../../client/KeyObserver';
 
@@ -13,6 +14,7 @@ declare global {
     ResultScreen: ResultScreen;
     KeyboardGrid: KeyboardGrid;
     Platformer: Platformer;
+    Dialog: Dialog;
   }
 }
 
@@ -20,9 +22,11 @@ window.Lesson = Lesson;
 window.ResultScreen = ResultScreen;
 window.KeyboardGrid = KeyboardGrid;
 window.Platformer = Platformer;
+window.Dialog = Dialog;
 
 keyObserver
   .push('down', Platformer.step)
+  .push('down', Dialog.step)
   .push('up', ResultScreen.onKeyUp)
   .push('up', KeyboardGrid.keyUp)
   .push('down', KeyboardGrid.keyDown);

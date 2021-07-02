@@ -1,0 +1,43 @@
+.Dialog {
+  width: 80%;
+  margin: 32px auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #e6e9ff;
+  height: 150px;
+  overflow: hidden;
+  padding: 32px;
+}
+
+.Dialog__Bubble {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  min-width: 160px;
+  padding: 32px 24px;
+  background: white;
+  position: relative;
+  border-radius: 40px;
+  color: #696969;
+}
+
+.Dialog__Bubble::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  width: 50px;
+  height: 25px;
+  background: white;
+}
+
+.Dialog__Bubble_position_left::after {
+  left: 0;
+  transform: translateX(-30%);
+}
+
+.Dialog__Bubble_position_right::after {
+  right: 0;
+  transform: translateX(30%);
+}

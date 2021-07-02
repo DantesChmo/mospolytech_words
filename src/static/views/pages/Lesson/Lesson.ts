@@ -4,6 +4,7 @@ import { KeyboardGrid } from '../../keyboard/KeyboardGrid';
 import { DataTranslator } from '../../supported/DataTranslator';
 import { ResultScreen } from '../../game/ResultScreen';
 import { Platformer } from '../../game/Platformer';
+import { Dialog } from '../../game/Dialog';
 
 type Props = {
   name?: string;
@@ -26,6 +27,11 @@ class LessonPage extends UComponent<Props> {
         return (
           u(Platformer, props)
         );
+
+      case 'dialog':
+        return (
+          u(Dialog, props)
+        )
     }
   }
 

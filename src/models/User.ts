@@ -1,5 +1,5 @@
 import { Model } from '../lib/Model';
-import { pgClient } from '../db';
+import { pgClient, redisClient } from '../db';
 
 interface UserTable {
   id: string;
