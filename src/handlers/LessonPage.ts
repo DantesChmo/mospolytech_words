@@ -11,6 +11,12 @@ class LessonPageHandler extends Handler {
 
     res.send(response);
   }
+
+  @asyncHandler
+  async saveProgress(req, res): Promise<void> {
+    await LessonPageController.saveProgress(req.params.lessonId, req.body.userId, req.body.score);
+    res.json({ok: true});
+  }
 }
 
 export {

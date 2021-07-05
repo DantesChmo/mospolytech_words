@@ -7,7 +7,8 @@ import { Platformer } from '../../game/Platformer';
 import { Dialog } from '../../game/Dialog';
 
 type Props = {
-  name?: string;
+  id?: string,
+  name?: string,
   content?: string,
   gameType?: string
 }
@@ -39,7 +40,7 @@ class LessonPage extends UComponent<Props> {
     return (
       u('main', {className: this.b('Main')},
         u(ResultScreen, {firstLetter: this.props.content[0]}),
-        u(DataTranslator, {event: `Lesson.init(\`${this.props.content}\`)`}),
+        u(DataTranslator, {event: `Lesson.init(\`${this.props.content}\`, '${this.props.id}')`}),
         this._getCurrentGame(u),
         u(KeyboardGrid)
       )

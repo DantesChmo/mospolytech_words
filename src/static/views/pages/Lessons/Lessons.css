@@ -1,1 +1,58 @@
 @import '../../base/Header/Header.css';
+
+.LessonsPage__Main {
+  padding: 24px 128px;
+}
+
+.LessonsPage__LessonList {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  flex-direction: column;
+}
+
+.LessonsPage__LessonListBlockItem {
+  display: flex;
+  flex-direction: column;
+}
+
+.LessonsPage__LessonListItem {
+  display: block;
+}
+
+.LessonsPage__LessonListBlockName {
+  font-size: 48px;
+  display: inline-block;
+}
+
+.LessonsPage__LessonList {
+  margin-left: 24px;
+  margin-bottom: 12px;
+}
+
+.LessonsPage__LessonItemLink {
+  display: inline-block;
+  font-size: 24px;
+  padding: 4px 32px;
+  border-radius: 4px;
+  text-decoration: none;
+  margin: 4px 0;
+  color: #333;
+  transition: transform .2s ease-in-out, background-color .2s ease-in-out;
+}
+
+.LessonsPage__LessonItemLink:hover {
+  background: #cacaca;
+  transform: translateX(8px);
+  text-decoration: underline;
+  color: #232323;
+}
+
+.LessonsPage__BlockNameIcon {
+  margin-left: 16px;
+}
+
+.LessonsPage__BlockNameIcon svg {
+  width: 24px;
+  height: 24px;
+}

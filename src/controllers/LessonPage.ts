@@ -1,6 +1,6 @@
 import { LessonPage } from '../static/views/pages/Lesson';
 import { UDom, u } from '../lib/UniversalDom';
-import { lessonModel } from '../models';
+import { lessonModel, leadersModel } from '../models';
 
 import { Lesson } from '../@types';
 
@@ -9,6 +9,7 @@ class LessonPageController {
     const lesson = await LessonPageController.getLesson(lessonId);
 
     const dom = new UDom(u(LessonPage, {
+      id: lessonId,
       name: lesson?.lessonName,
       content: lesson?.lessonContent,
       gameType: lesson?.gameType
@@ -26,6 +27,19 @@ class LessonPageController {
       lessonContent: dbLesson?.content,
       treePosition: dbLesson?.tree_position
     });
+  }
+
+  static async saveProgress(lessonId: string, userId: string, score: number) {
+    const currentProgress = {[lessonId]: score};
+
+    const leadData = await leadersModel.readByUserId(userId);
+
+    if (leadData) {
+      const progress = JSON.stringify({...JSON.parse(leadData.progress), ...currentProgress});
+      await leadersModel.update({...leadData, progress})
+    } else {
+      await leadersModel.create({'user_id': userId, progress: JSON.stringify(currentProgress)});
+    }
   }
 }
 

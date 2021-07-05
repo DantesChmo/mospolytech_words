@@ -14,3 +14,9 @@ CREATE TABLE "user" (
     progress SMALLINT NOT NULL,
     is_admin BOOLEAN
 );
+
+CREATE TABLE "leader" (
+    id SERIAL NOT NULL PRIMARY KEY,
+    user_id TEXT NOT NULL,
+    progress TEXT
+);

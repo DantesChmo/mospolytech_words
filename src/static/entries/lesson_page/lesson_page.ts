@@ -24,9 +24,13 @@ window.KeyboardGrid = KeyboardGrid;
 window.Platformer = Platformer;
 window.Dialog = Dialog;
 
-keyObserver
-  .push('down', Platformer.step)
-  .push('down', Dialog.step)
-  .push('up', ResultScreen.onKeyUp)
-  .push('up', KeyboardGrid.keyUp)
-  .push('down', KeyboardGrid.keyDown);
+window.onload = () => {
+  keyObserver
+    .push('down', Platformer.step)
+    .push('down', Dialog.step)
+    .push('up', ResultScreen.onKeyUp)
+    .push('up', KeyboardGrid.keyUp)
+    .push('down', KeyboardGrid.keyDown)
+    .push('up', Lesson.checkGameStatus)
+    .push('down', Lesson.calcScore);
+};

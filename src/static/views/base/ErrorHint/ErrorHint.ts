@@ -6,7 +6,6 @@ type Props = {
 
 class ErrorHint extends UComponent<Props> {
   render(u) {
-    console.log(this.b());
     return (
       u('div', {className: this.b()},
         u('button', {

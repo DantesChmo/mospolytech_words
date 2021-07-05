@@ -1,0 +1,35 @@
+@import '../../../common/common.css';
+@import '../../base/Header/Header.css';
+
+.LeaderBoard__Table {
+  border: 1px solid #616161;
+  width: 900px;
+  margin: 24px auto;
+}
+
+.LeaderBoard__TableHead .LeaderBoard__TableItem {
+  color: #616161;
+}
+
+.LeaderBoard__TableRow {
+  display: grid;
+  min-height: 50px;
+  grid-template-columns: 1fr 1fr;
+}
+
+.LeaderBoard__TableItem {
+  border: 1px solid #616161;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 4px 16px;
+}
+
+.LeaderBoard__TableItem_current {
+  color: tomato;
+}
+
+.LeaderBoard__TableSubRow {
+  display: flex;
+  justify-content: space-between;
+}
