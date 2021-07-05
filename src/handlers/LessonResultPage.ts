@@ -7,7 +7,7 @@ class LessonResultPageHandler extends Handler {
   async index(req, res) {
     res.setHeader('Content-type', 'text/html');
 
-    const response = await LessonResultPageController.render();
+    const response = await LessonResultPageController.render(req.query.from, req.query.userId);
 
     res.send(response);
   }

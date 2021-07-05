@@ -1,0 +1,1 @@
+import './lesson_result_page.css';

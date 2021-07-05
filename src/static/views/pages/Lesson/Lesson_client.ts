@@ -46,7 +46,7 @@ class Lesson {
           userId
         }
       }).then(() => {
-        window.location.href = `/lesson_result?from=${lessonId}`;
+        window.location.href = `/lesson_result?from=${lessonId}&userId=${userId}`;
       });
     }
   }
