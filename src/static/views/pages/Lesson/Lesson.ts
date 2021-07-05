@@ -3,6 +3,7 @@ import { Header } from '../../base/Header';
 import { KeyboardGrid } from '../../keyboard/KeyboardGrid';
 import { DataTranslator } from '../../supported/DataTranslator';
 import { ResultScreen } from '../../game/ResultScreen';
+import { ProgressBar } from '../../game/ProgressBar';
 import { Platformer } from '../../game/Platformer';
 import { Dialog } from '../../game/Dialog';
 
@@ -53,6 +54,7 @@ class LessonPage extends UComponent<Props> {
     return (
       u('div', {className: this.b()},
         u(Header),
+        u(ProgressBar),
         isEmpty ? 'empty' : this._renderMainContent(u)
       )
     )

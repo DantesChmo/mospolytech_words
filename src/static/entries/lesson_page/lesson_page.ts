@@ -3,6 +3,7 @@ import { Lesson } from '../../views/pages/Lesson/Lesson_client';
 import { ResultScreen } from '../../views/game/ResultScreen/ResultScreen_client';
 import { Platformer } from '../../views/game/Platformer/Platformer_client';
 import { Dialog } from '../../views/game/Dialog/Dialog_client';
+import { ProgressBar } from '../../views/game/ProgressBar/ProgressBar_client';
 
 import { keyObserver } from '../../client/KeyObserver';
 
@@ -13,6 +14,7 @@ declare global {
     Lesson: Lesson;
     ResultScreen: ResultScreen;
     KeyboardGrid: KeyboardGrid;
+    ProgressBar: ProgressBar;
     Platformer: Platformer;
     Dialog: Dialog;
   }
@@ -21,6 +23,7 @@ declare global {
 window.Lesson = Lesson;
 window.ResultScreen = ResultScreen;
 window.KeyboardGrid = KeyboardGrid;
+window.ProgressBar = ProgressBar;
 window.Platformer = Platformer;
 window.Dialog = Dialog;
 
@@ -31,6 +34,7 @@ window.onload = () => {
     .push('up', ResultScreen.onKeyUp)
     .push('up', KeyboardGrid.keyUp)
     .push('down', KeyboardGrid.keyDown)
+    .push('up', ProgressBar.onChange)
     .push('up', Lesson.checkGameStatus)
     .push('down', Lesson.calcScore);
 };

@@ -25,4 +25,7 @@
 
 .ResultScreen__NextLetter {
   color: darkgrey;
+  width: 28px;
+  display: flex;
+  align-items: flex-end;
 }

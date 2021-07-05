@@ -1,5 +1,10 @@
 @import '../../base/Header/Header.css';
 @import '../../keyboard/KeyboardGrid/KeyboardGrid.css';
 @import '../../game/ResultScreen/ResultScreen.css';
+@import '../../game/ProgressBar/ProgressBar.css';
 @import '../../game/Platformer/Platformer.css';
 @import '../../game/Dialog/Dialog.css';
+
+.LessonPage {
+  position: relative;
+}
