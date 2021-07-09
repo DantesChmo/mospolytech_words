@@ -5,7 +5,9 @@ import { leadersModel, lessonModel } from '../models';
 class LeaderBoardPageController {
   static async render() {
     const leads = await leadersModel.readAll();
-    const propsOrigin = leads.map(({progress, user_id}) => ({userId: user_id, progress: JSON.parse(progress)}));
+    const propsOrigin = leads.map(({progress, user_id}) => (
+      {userId: user_id, progress: JSON.parse(progress)}
+    ));
     const props = await Promise.all(propsOrigin.map(async ({progress, userId}) => {
       const progressList = await Promise.all(Object.entries(progress).map(async ([lessonPath, score]) => {
         const lesson = await lessonModel.readByPath(`/${lessonPath.split('_').join('/')}`);

@@ -23,8 +23,10 @@ class Dialog {
     const dialogPosition: 'left' | 'right' = Store.getData('dialogPosition');
 
     const currentWord = gameWords[dialogStep];
+    const currentProgress = currentWord.length;
+    const progress = gameProgress.split(' ')[dialogStep].length;
 
-    if (gameProgress.length === currentWord.length) {
+    if (currentProgress === progress) {
       const nextPosition = positionMap[dialogPosition];
       const nextStep = dialogStep + 1;
       const nextWord = gameWords[nextStep];
