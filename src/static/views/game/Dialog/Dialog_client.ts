@@ -37,6 +37,15 @@ class Dialog {
       const nextBubbleSelector = `Dialog__Bubble_position_${nextPosition}`;
       const $nextBubble = $u({className: nextBubbleSelector});
       $nextBubble.innerHTML = nextWord;
+
+      const currentBubbleSelector = `Dialog__Bubble_position_${dialogPosition}`;
+      const $currentBubble = $u({className: currentBubbleSelector});
+      $currentBubble.innerHTML = `
+        <div class="Dialog__Dots">
+            <span class="Dialog__Dot"></span>
+            <span class="Dialog__Dot"></span>
+            <span class="Dialog__Dot"></span>
+        </div>`;
     }
   }
 }

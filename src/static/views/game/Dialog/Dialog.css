@@ -44,3 +44,73 @@
   left: 100%;
   transform: translateX(-10%);
 }
+
+.Dialog__Dot {
+  width: 12px;
+  height: 12px;
+  display: inline-block;
+  background: grey;
+  border-radius: 50%;
+  animation: showing 1s ease-out;
+}
+
+.Dialog__Dot:nth-of-type(1) {
+  animation: dots 1s ease-in-out infinite, pulse .7s ease-in infinite;
+}
+
+.Dialog__Dot:nth-of-type(2) {
+  animation: dots 1s .2s ease-in-out infinite, pulse .7s ease-in infinite;
+}
+
+.Dialog__Dot:nth-of-type(3) {
+  animation: dots 1s .4s ease-in-out infinite, pulse .7s ease-in infinite;
+}
+
+.Dialog__Dots {
+  display: flex;
+  align-items: center;
+  width: 64px;
+  justify-content: space-between;
+}
+
+@keyframes dots {
+  0% {
+    transform: translateY(0%);
+  }
+
+  20% {
+    transform: translateY(100%);
+  }
+
+  40% {
+    transform: translateY(0%);
+  }
+
+  100% {
+    transform: translateY(0%);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    opacity: .7;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: .7;
+  }
+}
+
+@keyframes showing {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
